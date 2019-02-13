@@ -4,10 +4,12 @@ $(document).ready(function () {
     // adding event listeners to any dynamically generated "save article"
     // and "scrape new article" buttons
     var articleContainer = $(".article-container");
-    $(document).on("click", ".btn.delete", handleArticleDelete);
-    $(document).on("click", ".btn.notes", handleArticleNotes);
-    $(document).on("click", ".btn.save", handleNoteSave);
+    $(document).on("click", ".delete", handleArticleDelete);
+    $(document).on("click", ".notes", handleArticleNotes);
+    // $(document).on("click", ".btn.save", handleNoteSave);
     $(document).on("click", ".btn.note-delete", handleNoteDelete);
+
+    
 
     // Once the page is ready, run the initPage function to kick things off
     initPage();
@@ -140,8 +142,9 @@ $(document).ready(function () {
                 }
             });
     }
-
+   
     function handleArticleNotes() {
+    
         // this function handles appending the notes modal and displaying our notes
         // we grab the id of the article to get notes for from the panel element the delete button sits inside
         var currentArticle = $(this).parents(".panel").data();
@@ -173,6 +176,7 @@ $(document).ready(function () {
             $(".btn.save").data("article", noteData);
             // renderNotesList will populate the actual note HTML inside of the modal we just created/opened
             renderNotesList(noteData);
+            
         });
 
     }
@@ -184,11 +188,11 @@ $(document).ready(function () {
         var noteData;
         var NewNote = $(".bootbot-body textarea").val().trim();
         // if we actually have data typed into the note input field, format it
-        // and post it to the "/api/notes" route and send the formatted noteDate as well
+        // and post it to the "/api/notes" route and send the formatted noteData as well
         if (NewNote) {
             noteData = {
                 _id: $(this).data("article")._id,
-                noteTextL NewNote
+                noteTextL: NewNote
             };
             $.post("/api/notes", noteData).then(function () {
                 // when complete close the modal 
