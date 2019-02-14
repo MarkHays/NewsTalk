@@ -35,19 +35,21 @@ app.use(bodyParser.urlencoded({
 app.use(router);
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/MongoHeadlines";
+
+mongoose.connect(MONGODB_URI);
 
 // Connect mongoose to our database
-mongoose.connect(db, function(error){
-    // Log any errors connection with mongoose
-    if (error) {
-        console.log(error);
-    }
-    // Or log a success message
-    else {
-        console.log("mongoose connection is successful");
-    }
-});
+// mongoose.connect(db, function(error){
+//     // Log any errors connection with mongoose
+//     if (error) {
+//         console.log(error);
+//     }
+//     // Or log a success message
+//     else {
+//         console.log("mongoose connection is successful");
+//     }
+// });
 
 // Listen on the port
 app.listen(PORT, function () {
