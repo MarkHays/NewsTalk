@@ -6,7 +6,7 @@ $(document).ready(function () {
     var articleContainer = $(".article-container");
     $(document).on("click", ".delete", handleArticleDelete);
     $(document).on("click", ".notes", handleArticleNotes);
-    // $(document).on("click", ".btn.save", handleNoteSave);
+    $(document).on("click", ".btn.save", handleNoteSave);
     $(document).on("click", ".btn.note-delete", handleNoteDelete);
 
     
